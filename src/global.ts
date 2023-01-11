@@ -31,6 +31,17 @@ html {
     }
 }   
 
+// define font default 400
+body, input, textarea, button {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+}
+
+// define font default 600
+h1, h2, h3, h4, h5, h6, strong {
+    font-weight: 600;
+}
+
 body {
     background: var(--background);
     -webkit-font-smoothing: antialiased;
