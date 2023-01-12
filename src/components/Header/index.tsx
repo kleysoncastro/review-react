@@ -12,7 +12,7 @@ export function Header(props: HeaderProps) {
             <Content>
                 <img src={logoImg} alt="money" />
                 <button type="button"
-                    onClick={props.handleOpenNewTransaction}>Nova Transação</button>
+                    onClick={props.onOpenNewTransactionModal}>Nova Transação</button>
 
             </Content>
         </Container>
