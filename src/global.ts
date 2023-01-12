@@ -13,6 +13,7 @@ export const GlobalStyle = createGlobalStyle`
 
         --shape: #ffffff;
         --green: #33cc95;
+        --input-background: #e7e9ee;
     }
 
 
@@ -56,6 +57,42 @@ button {
 [disabled] {
     opacity: 0.6;
     cursor: not-allowed;
+}
+
+.react-modal-overlay {
+    background: rgba(0, 0, 0, 0,5);
+    
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    backdrop-filter: blur(1.2px);
+
+}
+.react-modal-content {
+
+    width: 100%;
+    max-width: 576px;
+
+    background: var(--shape);
+
+    padding: 3rem;
+    position: relative;
+    border-radius: 0.25rem;
+}
+
+.button-modal-close {
+   position: absolute;
+   right: 1.5rem;
+   top: 1.5rem;
+   border: 0;
+   background: transparent;
 }
 
 `
