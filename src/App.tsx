@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Dashboard } from './components/Dashboard';
 import { Header } from './components/Header';
 import { GlobalStyle } from './global';
+import { NewTransactionModal } from "./components/NewTransactionModal";
 Modal.setAppElement("#root");
 export function App() {
 
@@ -11,7 +12,7 @@ export function App() {
   function handleOpenNewTransaction() {
     setIsNewOpenTransacitonModal(true);
   }
-  function handleClaseNewTransaction() {
+  function handleCloseNewTransaction() {
     setIsNewOpenTransacitonModal(false);
   }
 
@@ -20,9 +21,7 @@ export function App() {
     <>
       <Header onOpenNewTransactionModal={handleOpenNewTransaction} />
       <Dashboard />
-      <Modal isOpen={isNewOpenTransacitonModal} onRequestClose={handleClaseNewTransaction}>
-        <h2>Nova transação</h2>
-      </Modal>
+      <NewTransactionModal OnRequestCloseModal={handleCloseNewTransaction} isOpenModal={isNewOpenTransacitonModal} />
       <GlobalStyle />
     </>
   );
