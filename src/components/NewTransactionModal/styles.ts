@@ -61,6 +61,11 @@ gap: 0.5rem;
 
 interface RadioBoxButtonProps {
     isActive: boolean;
+    activeColor: "red" | "green";
+}
+const colors = {
+    red: "#e52e4d",
+    green: "#33cc95"
 }
 
 export const RadioBoxButton = styled.button<RadioBoxButtonProps>`
@@ -70,7 +75,7 @@ height: 4rem;
     border: 1px solid #d7d7d7;
     border-radius: 0.3rem;
 
-    background: ${(props) => props.isActive ? "#ddd" : "transparent"};
+    background: ${(props) => props.isActive ? colors[props.activeColor] : "transparent"};
 
     align-items: center;
     justify-content: center;

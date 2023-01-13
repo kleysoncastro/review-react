@@ -4,7 +4,8 @@ import closeImg from "../../assets/close.svg";
 
 import income from "../../assets/income.svg"
 import outcome from "../../assets/outcome.svg"
-import { useState } from "react";
+import { FormEvent, useState } from "react";
+import { api } from "../../services/api";
 interface INewOpenTransactionModal {
     isOpenModal: boolean;
     OnRequestCloseModal: () => void;
@@ -18,6 +19,22 @@ estão estilizadas no global.ts
 export function NewTransactionModal(props: INewOpenTransactionModal) {
 
     const [type, setType] = useState('deposito');
+    const [value, setValue] = useState(0);
+    const [categories, setCategories] = useState("");
+    const [titulo, setTitulo] = useState("");
+
+
+    function handleCreateNewTransaction(event: FormEvent) {
+        event.preventDefault();
+
+        const data = {
+            type,
+            value,
+            categories,
+            titulo
+        };
+        api.post("/transactions", data)
+    }
 
     return (
         <Modal isOpen={props.isOpenModal}
@@ -32,16 +49,17 @@ export function NewTransactionModal(props: INewOpenTransactionModal) {
             >
                 <img src={closeImg} alt="Close" />
             </button>
-            <Container>
+            <Container onSubmit={handleCreateNewTransaction}>
                 <h2>Nova transação</h2>
 
-                <input placeholder="Título" />
-                <input placeholder="valor" type="number" />
-                <input placeholder="Categorias" />
+                <input placeholder="Título" value={titulo} onChange={event => setTitulo(event.target.value)} />
+                <input placeholder="valor" type="number" value={value} onChange={event => setValue(Number(event.target.value))} />
+                <input placeholder="Categorias" value={categories} onChange={event => setCategories(event.target.value)} />
                 <TransactionContainer>
                     <RadioBoxButton type="button"
                         onClick={() => { setType("deposito") }}
                         isActive={type === "deposito"}
+                        activeColor="green"
                     >
                         <img src={income} alt="Entrada" />
                         <span>Entrada</span>
@@ -49,6 +67,8 @@ export function NewTransactionModal(props: INewOpenTransactionModal) {
                     <RadioBoxButton type="button"
                         onClick={() => { setType("retirada") }}
                         isActive={type === "retirada"}
+                        activeColor="red"
+
 
                     >
                         <img src={outcome} alt="Saida" />
